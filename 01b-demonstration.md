@@ -8,37 +8,32 @@ minutes: 10 max
 >
 > *  Draw on the board
 
-#Person 1
+#Person 1#
 So, here is a representation of a file in our coding project.
-*draws square in top center*
+
+**draws square in top center**
 
 And here are some of the contents of the file.
-*draws circles inside square*
+
+**draws circles inside square**
 
 Don't stress too much about what these are. These are just representations of things in a file (or a project?).
 This version of the file is our original.
 In our terrible version control nightmare from before, we kept saving new versions of the file. 
 
-*draws another square filled with circles on the next level, to the left*
+**draws another square filled with circles on the next level, to the left**
 
 So, if I made a small change, like *this* one...
 
-*substitutes one circle with another shape* 
+**substitutes one circle with another shape**
 
 I would have a new version, or I would save over the old one, which, I might, ultimately regret.
 
-But with git, we save the *change* that we made.
+But with git, we save the **change** that we made.
 
-*draws arrow from first square to second with label of circle ---> square*
+**draws arrow from first square to second with label of circle ---> square**
 
-
-
-
-~~~ {.bash}
-$ git config --global user.name "Vlad Dracula"
-$ git config --global user.email "vlad@tran.sylvan.ia"
-$ git config --global color.ui "auto"
-~~~
+#Person Two#
 
 (Please use your own name and email address instead of Dracula's.)
 
