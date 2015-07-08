@@ -1,17 +1,38 @@
 ---
 layout: page
 title: Illustration of Git Concepts
-subtitle: At It's Simplest
+subtitle: At Their Simplest
 minutes: 10 max
 ---
 > ## Learning Objectives {.objectives}
 >
-> *  Configure `git` the first time is used on a computer.
-> *  Understand the meaning of the `--global` configuration flag.
+> *  Draw on the board
 
-When we use Git on a new computer for the first time,
-we need to configure a few things.
-Here's how Dracula sets up his new laptop:
+#Person 1
+So, here is a representation of a file in our coding project.
+*draws square in top center*
+
+And here are some of the contents of the file.
+*draws circles inside square*
+
+Don't stress too much about what these are. These are just representations of things in a file (or a project?).
+This version of the file is our original.
+In our terrible version control nightmare from before, we kept saving new versions of the file. 
+
+*draws another square filled with circles on the next level, to the left*
+
+So, if I made a small change, like *this* one...
+
+*substitutes one circle with another shape* 
+
+I would have a new version, or I would save over the old one, which, I might, ultimately regret.
+
+But with git, we save the *change* that we made.
+
+*draws arrow from first square to second with label of circle ---> square*
+
+
+
 
 ~~~ {.bash}
 $ git config --global user.name "Vlad Dracula"
