@@ -23,6 +23,11 @@ In our terrible version control nightmare from before, we kept saving new versio
 
 **draws another square filled with circles on the next level, to the left**
 
+And **sending** copies to other people to work with.
+
+**PERSON 2 DRAWS another square filled with circles on the second level, to the right**
+
+
 So, if I made a small change, like *this* one...
 
 **substitutes one circle with another shape**
@@ -35,57 +40,17 @@ But with git, we save the **change** that we made.
 
 #Person Two#
 
-(Please use your own name and email address instead of Dracula's.)
+Meanwhile I've been making my own, different changes to the file.
 
-He also has to set his favorite text editor, following this table:
+**replaces a different circle with a different shape**
 
-| Editor             | Configuration command                            |
-|:-------------------|:-------------------------------------------------|
-| nano               | `$ git config --global core.editor "nano -w"`    |
-| Text Wrangler      | `$ git config --global core.editor "edit -w"`    |
-| Sublime Text (Mac) | `$ git config --global core.editor "subl -n -w"` |
-| Sublime Text (Win) | `$ git config --global core.editor "'c:/program files/sublime text 2/sublime_text.exe' -w"` |
-| Notepad++ (Win)    | `$ git config --global core.editor "'c:/program files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"`|
-| Kate (Linux)       | `$ git config --global core.editor "kate"`       |
-| Gedit (Linux)      | `$ git config --global core.editor "gedit -s"`   |
+And saving my own changes.
 
+**draws arrow with label**
 
-Git commands are written `git verb`,
-where `verb` is what we actually want it to do.
-In this case,
-we're telling Git:
+#Person 1#
+While I make another change.
 
-*   our name and email address,
-*   to colorize output,
-*   what our favorite text editor is, and
-*   that we want to use these settings globally (i.e., for every project),
+**draws another square on the third level followed by another substitution and another labelled arrow**
 
-The four commands above only need to be run once: the flag `--global` tells Git
-to use the settings for every project on this computer.
-
-You can check your settings at any time:
-
-~~~ {.bash}
-$ git config --list
-~~~
-
-You can change your configuration as many times as you want: just use the
-same commands to choose another editor or update your email address.
-
-> ## Proxy {.callout}
->
-> In some networks you need to use a
-> [proxy](https://en.wikipedia.org/wiki/Proxy_server). If this is the case, you
-> may also need to tell Git about the proxy:
->
-> ~~~ {.bash}
-> $ git config --global http.proxy proxy-url
-> $ git config --global https.proxy proxy-url
-> ~~~
->
-> To disable the proxy, use
->
-> ~~~ {.bash}
-> $ git config --global --unset http.proxy
-> $ git config --global --unset https.proxy
-> ~~~
+#AND WE'LL HAVE TO FINISH THIS LATER IM SO VERY TIRED.#
