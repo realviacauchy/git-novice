@@ -32,7 +32,7 @@ _______
 5. Meanwhile Pete makes multiple changes with multiple commits.
 6. We merge the two improved versions by applying Pete's commits to my file.
 
-[![Demonstration](fig/img_0281.jpg)]
+[![Demonstration](fig/IMG_0281.jpg)]
 
 _______________
 
