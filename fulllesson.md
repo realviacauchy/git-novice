@@ -1,9 +1,6 @@
----
-layout: page
-title: Version Control with Git
-subtitle: Automated Version Control
-minutes: 5
----
+#Open Up Your Terminal#
+
+
 > ## Learning Objectives {.objectives}
 >
 > *   Understand the benefits of an automated version control system.
@@ -65,8 +62,8 @@ across different computers facilitating collaboration among different people.
 > *  Understand the meaning of the `--global` configuration flag.
 
 When we use Git on a new computer for the first time,
-we need to configure a few things.
-Here's how Dracula sets up his new laptop:
+we need to configure a few things. Rememberthe email address you used to register with github? Go ahead and use that during this part of the setup.
+
 
 ~~~ {.bash}
 $ git config --global user.name "Vlad Dracula"
@@ -111,35 +108,31 @@ $ git config --list
 You can change your configuration as many times as you want: just use the
 same commands to choose another editor or update your email address.
 
-> ## Proxy {.callout}
->
-> In some networks you need to use a
-> [proxy](https://en.wikipedia.org/wiki/Proxy_server). If this is the case, you
-> may also need to tell Git about the proxy:
->
-> ~~~ {.bash}
-> $ git config --global http.proxy proxy-url
-> $ git config --global https.proxy proxy-url
-> ~~~
->
-> To disable the proxy, use
->
-> ~~~ {.bash}
-> $ git config --global --unset http.proxy
-> $ git config --global --unset https.proxy
-> ~~~
----
-layout: page
-title: Version Control with Git
-subtitle: Creating a Repository
-minutes: 10
----
+Also, instruct everyone to navigate to **home directory**:
+
+~~~ {.bash}
+$ cd
+~~~
+
+
+#COMPREHENSION CHECK VIA STICKIES#
+
+
+
 > ## Learning Objectives {.objectives}
 > 
 > *   Create a local Git repository.
 
 Once Git is configured,
 we can start using it.
+**REMINDER** : Check to makes sure you are in the right directory -- the home directory.
+
+~~~ {.bash}
+$ pwd
+~~~
+
+
+
 Let's create a directory for our work and then move into that directory:
 
 ~~~ {.bash}
@@ -147,7 +140,14 @@ $ mkdir planets
 $ cd planets
 ~~~
 
-Then we tell Git to make `planets` a [repository](reference.html#repository)&mdash;a place where
+The directory "planets" should be empty since we just made it. I'm going to use the `-a` flag so that `ls` will show me everything in the directory, including any hidden files:
+
+~~~ {.bash}
+$ ls -a
+~~~
+
+
+Now we tell Git to make `planets` a [repository](reference.html#repository)&mdash; a place where
 Git can store versions of our files:
 
 ~~~ {.bash}
@@ -161,7 +161,7 @@ it appears that nothing has changed:
 $ ls
 ~~~
 
-But if we add the `-a` flag to show everything,
+But if we use that `-a` flag to show everything,
 we can see that Git has created a hidden directory within `planets` called `.git`:
 
 ~~~ {.bash}
@@ -189,64 +189,42 @@ $ git status
 nothing to commit (create/copy files and use "git add" to track)
 ~~~
 
-> ## Places to Create Git Repositories {.challenge}
->
-> Dracula starts a new project, `moons`, related to his `planets` project.
-> Despite Wolfman's concerns, he enters the following sequence of commands to
-> create one Git repository inside another:
-> 
-> ~~~ {.bash}
-> cd             # return to home directory
-> mkdir planets  # make a new directory planets
-> cd planets     # go into planets
-> git init       # make the planets directory a Git repository
-> mkdir moons    # make a sub-directory planets/moons
-> cd moons       # go into planets/moons
-> git init       # make the moons sub-directory a Git repository
-> ~~~
-> 
-> Why is it a bad idea to do this?
-> How can Dracula "undo" his last `git init`?
----
-layout: page
-title: Version Control with Git
-subtitle: Tracking Changes
-minutes: 20
----
+
+#STICKY CHECK#
+
 > ## Learning Objectives {.objectives}
 > 
 > *   Go through the modify-add-commit cycle for single and multiple files.
 > *   Explain where information is stored at each stage of Git commit workflow.
 
-Let's create a file called `mars.txt` that contains some notes
-about the Red Planet's suitability as a base.
-(We'll use `nano` to edit the file;
-you can use whatever editor you like.
-In particular, this does not have to be the `core.editor` you set globally earlier.)
+Let's create a file called `venus.txt` that contains some awesome facts about the planet, Venus. In this case, I'm going to use `nano` to create and edit the file, like so:
 
 ~~~ {.bash}
-$ nano mars.txt
+$ nano venus.txt
 ~~~
 
-Type the text below into the `mars.txt` file:
+Type the text below into the `venus.txt` file:
 
 ~~~ {.output}
-Cold and dry, but everything is my favorite color
+A day on Venus is longer than a year on Venus.
 ~~~
+Now, we use the command `CTRL + O` to write to the file; press enter to confirm the name of the file to which we want to save the contents; and now `CTRL + X` to exit the editor.
+(Windows users, you may notice that your command history has -- seemingly -- disappeared from your terminal, but if you use the up arrow, you should still be able to recall previous commands.)
 
-`mars.txt` now contains a single line, which we can see by running:
+
+`venus.txt` now contains a single line, which we can see by running:
 
 ~~~ {.bash}
 $ ls
 ~~~
 ~~~ {.output}
-mars.txt
+venus.txt
 ~~~
 ~~~ {.bash}
-$ cat mars.txt
+$ cat venus.txt
 ~~~
 ~~~ {.output}
-Cold and dry, but everything is my favorite color
+A day on Venus is longer than a year on Venus.
 ~~~
 
 If we check the status of our project again,
@@ -263,7 +241,7 @@ $ git status
 # Untracked files:
 #   (use "git add <file>..." to include in what will be committed)
 #
-#	mars.txt
+#	venus.txt
 nothing added to commit but untracked files present (use "git add" to track)
 ~~~
 
@@ -272,7 +250,7 @@ that Git isn't keeping track of.
 We can tell Git to track a file using `git add`:
 
 ~~~ {.bash}
-$ git add mars.txt
+$ git add venus.txt
 ~~~
 
 and then check that the right thing happened:
@@ -288,22 +266,22 @@ $ git status
 # Changes to be committed:
 #   (use "git rm --cached <file>..." to unstage)
 #
-#	new file:   mars.txt
+#	new file:   venus.txt
 #
 ~~~
 
-Git now knows that it's supposed to keep track of `mars.txt`,
+Git now knows that it's supposed to keep track of `venus.txt`,
 but it hasn't recorded these changes as a commit yet.
 To get it to do that,
 we need to run one more command:
 
 ~~~ {.bash}
-$ git commit -m "Start notes on Mars as a base"
+$ git commit -m "Start listing facts about Venus"
 ~~~
 ~~~ {.output}
-[master (root-commit) f22b25e] Start notes on Mars as a base
+[master (root-commit) f22b25e] Start listing facts about Venus
  1 file changed, 1 insertion(+)
- create mode 100644 mars.txt
+ create mode 100644 venus.txt
 ~~~
 
 When we run `git commit`,
@@ -320,8 +298,7 @@ Git will launch `nano` (or whatever other editor we configured as `core.editor`)
 so that we can write a longer message.
 
 [Good commit messages][commit-messages] start with a brief (<50 characters) summary of
-changes made in the commit.  If you want to go into more detail, add
-a blank line between the summary line and your additional notes.
+changes made in the commit. 
 
 
 If we run `git status` now:
@@ -334,7 +311,7 @@ $ git status
 nothing to commit, working directory clean
 ~~~
 
-it tells us everything is up to date.
+it tells us everything is up to date. This means that the current state of the repository matches the most recent snapshop that git has stored.
 If we want to know what we've done recently,
 we can ask Git to show us the project's history using `git log`:
 
@@ -346,7 +323,7 @@ commit f22b25e3233b4645dabd0d81e651fe074bd8e73b
 Author: Vlad Dracula <vlad@tran.sylvan.ia>
 Date:   Thu Aug 22 09:51:46 2013 -0400
 
-    Start notes on Mars as a base
+    Start listing facts about Venus
 ~~~
 
 `git log` lists all commits  made to a repository in reverse chronological order.
@@ -366,17 +343,17 @@ and the log message Git was given when the commit was created.
 > so that our filesystem doesn't become cluttered
 > (and so that we can't accidentally edit or delete an old version).
 
-Now suppose Dracula adds more information to the file.
+Now suppose we add more information to the file. I know plenty of interesting things about venus.
 (Again, we'll edit with `nano` and then `cat` the file to show its contents;
 you may use a different editor, and don't need to `cat`.)
 
 ~~~ {.bash}
-$ nano mars.txt
-$ cat mars.txt
+$ nano venus.txt
+$ cat venus.txt
 ~~~
 ~~~ {.output}
-Cold and dry, but everything is my favorite color
-The two moons may be a problem for Wolfman
+A day on Venus is longer than a year on Venus.
+Venus moves around the Sun in the opposite direction as Earth.
 ~~~
 
 When we run `git status` now,
@@ -391,7 +368,7 @@ $ git status
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
-#	modified:   mars.txt
+#	modified:   venus.txt
 #
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
@@ -411,13 +388,13 @@ of the file and the most recently saved version:
 $ git diff
 ~~~
 ~~~ {.output}
-diff --git a/mars.txt b/mars.txt
+diff --git a/venus.txt b/venus.txt
 index df0654a..315bf3a 100644
 --- a/mars.txt
 +++ b/mars.txt
 @@ -1 +1,2 @@
- Cold and dry, but everything is my favorite color
-+The two moons may be a problem for Wolfman
+ A day on Venus is longer than a year on Venus.
++Venus moves around the Sun in the opposite direction as Earth.
 ~~~
 
 The output is cryptic because
@@ -439,7 +416,7 @@ If we break it down into pieces:
 After reviewing our change, it's time to commit it:
 
 ~~~ {.bash}
-$ git commit -m "Add concerns about effects of Mars' moons on Wolfman"
+$ git commit -m "Add another fascinating fact about the second planet"
 $ git status
 ~~~
 ~~~ {.output}
@@ -448,7 +425,7 @@ $ git status
 #   (use "git add <file>..." to update what will be committed)
 #   (use "git checkout -- <file>..." to discard changes in working directory)
 #
-#	modified:   mars.txt
+#	modified:   venus.txt
 #
 no changes added to commit (use "git add" and/or "git commit -a")
 ~~~
@@ -458,14 +435,26 @@ Git won't commit because we didn't use `git add` first.
 Let's fix that:
 
 ~~~ {.bash}
-$ git add mars.txt
-$ git commit -m "Add concerns about effects of Mars' moons on Wolfman"
+$ git add venus.txt
+$ git commit -m "Add another fascinating fact about the second planet"
 ~~~
 ~~~ {.output}
-[master 34961b1] Add concerns about effects of Mars' moons on Wolfman
+[master 34961b1] Add another fascinating fact about the second planet
  1 file changed, 1 insertion(+)
 ~~~
 
+
+##Exercise 1##
+
+Add another fact about the planet Venus to venus.txt. Stage the change (with `add`) and then commit it.
+
+(If you don’t know any other facts, you can google it or make one up -- dealer’s choice!)
+
+
+
+
+
+##not planning on saying this
 Git insists that we add files to the set we want to commit
 before actually committing anything
 because we may not want to commit everything at once.
@@ -620,49 +609,15 @@ repository (`git commit`):
 
 ![The Git Commit Workflow](fig/git-committing.svg)
 
+#AND WE'RE BACK#
 
-> ## Committing Changes to Git {.challenge}
->
-> Which command(s) below would save the changes of `myfile.txt` to my local Git repository?
->
-> 1. 
->
->     ~~~
->     $ git commit -m "my recent changes"
->     ~~~
-> 2. 
->
->     ~~~
->     $ git init myfile.txt
->     $ git commit -m "my recent changes"
->     ~~~
-> 3. 
->
->     ~~~
->     $ git add myfile.txt
->     $ git commit -m "my recent changes"
->     ~~~
-> 4. 
->
->     ~~~
->     $ git commit -m myfile.txt "my recent changes"
->     ~~~
+##Log Into Github##
+Explain that, unless you pay, all github repositories are public. This can be a little daunting. Gihub has a special developer pack that they are willing to give you for free, since you are students. This will allow you to have a few private repositories, which might be good, since public repositories can make some people feel a little self conscious. You don't have to do it this instant, but I encourage you to apply for the free pack here:
 
-> ## `bio` Repository {.challenge}
->
-> Create a new Git repository on your computer called `bio`.
-> Write a three-line biography for yourself in a file called `me.txt`,
-> commit your changes,
-> then modify one line, add a fourth line, and display the differences
-> between its updated state and its original state.
+**EDUPACK** link: 
+https://education.github.com/pack
 
-[commit-messages]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
----
-layout: page
-title: Version Control with Git
-subtitle: Remotes in GitHub
-minutes: 30
----
+
 > ## Learning Objectives {.objectives}
 >
 > *   Explain what remote repositories are and why they are useful.
@@ -683,23 +638,19 @@ Most programmers use hosting services like
 [GitHub](http://github.com),
 [BitBucket](http://bitbucket.org) or
 [GitLab](http://gitlab.com/)
-to hold those master copies;
-we'll explore the pros and cons of this in the final section of this lesson.
+to hold those master copies.
 
 Let's start by sharing the changes we've made to our current project with the world.
 Log in to GitHub,
-then click on the icon in the top right corner to create a new repository called `planets`:
+then click on the `+` icon in the top right corner to create a new repository called `planets`:
 
-![Creating a Repository on GitHub (Step 1)](fig/github-create-repo-01.png)
+
 
 Name your repository "planets" and then click "Create Repository":
 
-![Creating a Repository on GitHub (Step 2)](fig/github-create-repo-02.png)
 
-As soon as the repository is created,
 GitHub displays a page with a URL and some information on how to configure your local repository:
 
-![Creating a Repository on GitHub (Step 3)](fig/github-create-repo-03.png)
 
 This effectively does the following on GitHub's servers:
 
@@ -709,10 +660,8 @@ $ cd planets
 $ git init
 ~~~
 
-Our local repository still contains our earlier work on `mars.txt`,
-but the remote repository on GitHub doesn't contain any files yet:
+But, you'll notice, when you look at the list of files in our github repository, that our `venus.txt` isn't listed. This is because we haven't connected to the two repositories yet.
 
-![Freshly-Made GitHub Repository](fig/git-freshly-made-github-repo.svg)
 
 The next step is to connect the two repositories.
 We do this by making the GitHub repository a [remote](reference.html#remote)
@@ -724,28 +673,18 @@ the string we need to identify it:
 
 Click on the 'HTTPS' link to change the [protocol](reference.html#protocol) from SSH to HTTPS.
 
-> ## HTTPS vs SSH {.callout}
->
-> We use HTTPS here because it does not require additional configuration.
-> After the workshop you may want to set up SSH access, which is a bit more
-> secure, by following one of the great tutorials from
-> [GitHub](https://help.github.com/articles/generating-ssh-keys),
-> [Atlassian/BitBucket](https://confluence.atlassian.com/display/BITBUCKET/Set+up+SSH+for+Git)
-> and [GitLab](https://about.gitlab.com/2014/03/04/add-ssh-key-screencast/)
-> (this one has a screencast).
-
-![Changing the Repository URL on GitHub](fig/github-change-repo-string.png)
-
 Copy that URL from the browser,
 go into the local `planets` repository,
-and run this command:
+and run this command, but make sure to substitute your username for mine:
 
 ~~~ {.bash}
-$ git remote add origin https://github.com/vlad/planets
+$ git remote add origin https://github.com/realviacauchy/planets
 ~~~
 
-Make sure to use the URL for your repository rather than Vlad's:
-the only difference should be your username instead of `vlad`.
+Unfortunately, if you are working on a windows machine, the copy/paste/clipboard functions will not work, so you will have to type the repository URL in by hand. Take your time, and if you have any trouble, make sure to put up a sticky so that someone can come assist you.
+
+Make sure to use the URL for your repository rather than mine:
+the only difference should be your username instead of `realviacauchy`.
 
 We can check that the command has worked by running `git remote -v`:
 
@@ -753,8 +692,8 @@ We can check that the command has worked by running `git remote -v`:
 $ git remote -v
 ~~~
 ~~~ {.output}
-origin   https://github.com/vlad/planets.git (push)
-origin   https://github.com/vlad/planets.git (fetch)
+origin   https://github.com/realviacauchy/planets.git (push)
+origin   https://github.com/realviacauchy/planets.git (fetch)
 ~~~
 
 The name `origin` is a local nickname for your remote repository:
@@ -774,46 +713,34 @@ Delta compression using up to 4 threads.
 Compressing objects: 100% (6/6), done.
 Writing objects: 100% (9/9), 821 bytes, done.
 Total 9 (delta 2), reused 0 (delta 0)
-To https://github.com/vlad/planets
+To https://github.com/realviacauchy/planets
  * [new branch]      master -> master
 Branch master set up to track remote branch master from origin.
 ~~~
 
-> ## Proxy {.callout}
->
-> If the network you are connected to uses a proxy there is an chance that your last
-> command failed with "Could not resolve hostname" as the error message. To
-> solve this issue you need to tell Git about the proxy:
->
-> ~~~ {.bash}
-> $ git config --global http.proxy http://user:password@proxy.url
-> $ git config --global https.proxy http://user:password@proxy.url
-> ~~~
->
-> When you connect to another network that doesn't use a proxy you will need to
-> tell Git to disable the proxy using:
->
-> ~~~ {.bash}
-> $ git config --global --unset http.proxy
-> $ git config --global --unset https.proxy
-> ~~~
 
-> ## Password Managers {.callout}
->
-> If your operating system has a password manager configured, `git push` will
-> try to use it when it needs your username and password. If you want to type
-> your username and password at the terminal instead of using
-> a password manager, type:
->
-> ~~~ {.bash}
-> $ unset SSH_ASKPASS
-> ~~~
->
-> You may want to add this command at the end of your `~/.bashrc` to make it the
-> default behavior.
+Our local and remote repositories are now in the same state. If you reload your github repository page, you will now see the `venus.txt` file in the remote repo.
 
-Our local and remote repositories are now in this state:
+##Moving On##
 
+In a browser, navigate to this webpage:
+
+https://try.github.io
+
+There is an app at this link, that will walk you through all the material we just covered, along with a bit more that we didn't have time to touch on. Please take some time now to work through it, and let us know if you have any questions.
+
+Additionally, there is a really helpful, more advanced Git app here:
+
+http://bioconnector.org/learngit/
+
+I recommend checking it out in the future. It will help you better visualize the workflow of using git as part of a collaboration.
+
+
+
+
+
+
+#NOT PLANNING TO COVER THIS#
 ![GitHub Repository After First Push](fig/github-repo-after-first-push.svg)
 
 > ## The '-u' Flag {.callout}
